@@ -24,37 +24,37 @@ Built with a modern full-stack architecture featuring **PostgreSQL 18**, **FastA
 ```mermaid
 flowchart TD
     subgraph Data Tier
-        CSV[Raw Historical CSV Datasets] --> INGEST[Idempotent Ingestion Pipeline]
-        INGEST --> PG[(PostgreSQL 18\nuniversity_ranking_db)]
-        PG --> RO_ROLE[ranking_readonly User Role]
-        PG --> VIEWS[v_ranked_universities & v_university_overview]
+        CSV["Raw Historical CSV Datasets"] --> INGEST["Idempotent Ingestion Pipeline"]
+        INGEST --> PG[("PostgreSQL 18<br/>university_ranking_db")]
+        PG --> RO_ROLE["ranking_readonly User Role"]
+        PG --> VIEWS["v_ranked_universities & v_university_overview"]
     end
 
     subgraph Service Tier
-        RO_ROLE --> ORM[SQLAlchemy Core & ORM Engine]
-        ORM --> SERVICES[Deterministic Analytics Services\nOverview | Comparison | Trends | Country | Criteria | Demographics]
+        RO_ROLE --> ORM["SQLAlchemy Core & ORM Engine"]
+        ORM --> SERVICES["Deterministic Analytics Services<br/>Overview • Comparison • Trends • Country • Criteria • Demographics"]
     end
 
     subgraph API Tier
-        SERVICES --> FASTAPI[FastAPI REST Service\nOpenAPI Docs | Pydantic Schemas | Dependency Injection]
+        SERVICES --> FASTAPI["FastAPI REST Service<br/>OpenAPI Docs • Pydantic Schemas • Dependency Injection"]
     end
 
     subgraph GenAI Orchestration
-        LLM_REQ[User Question] --> LANGGRAPH[LangGraph Typed State Machine]
-        LANGGRAPH --> CLASSIFY[Intent Classifier & Router]
-        CLASSIFY --> SQL_GEN[SQL Generation\nFew-Shot Guidance & Acronym Expansion]
-        SQL_GEN --> AST_VAL[SQLGlot AST Safety Validator\nSELECT Only | Table Whitelist | Limit Enforcement]
-        AST_VAL --> RO_EXEC[PostgreSQL Read-Only Execution]
-        RO_EXEC --> ANSWER_GEN[Evidence-Based Grounded Answer Generator\nContext Window: 75 Rows]
-        ANSWER_GEN --> VIZ_REC[Adaptive Plotly Recommendation Engine]
-        LANGGRAPH -.-> TRACING[LangSmith Distributed Tracing & Latency Telemetry]
+        LLM_REQ["User Question"] --> LANGGRAPH["LangGraph Typed State Machine"]
+        LANGGRAPH --> CLASSIFY["Intent Classifier & Router"]
+        CLASSIFY --> SQL_GEN["SQL Generation<br/>Few-Shot Guidance & Acronym Expansion"]
+        SQL_GEN --> AST_VAL["SQLGlot AST Safety Validator<br/>SELECT Only • Table Whitelist • Limit Enforcement"]
+        AST_VAL --> RO_EXEC["PostgreSQL Read-Only Execution"]
+        RO_EXEC --> ANSWER_GEN["Evidence-Based Grounded Answer Generator<br/>Context Window: 75 Rows"]
+        ANSWER_GEN --> VIZ_REC["Adaptive Plotly Recommendation Engine"]
+        LANGGRAPH -.-> TRACING["LangSmith Distributed Tracing & Latency Telemetry"]
     end
 
     subgraph Presentation Tier
-        FASTAPI --> STREAMLIT[Streamlit Multi-Page Interactive Dashboard]
+        FASTAPI --> STREAMLIT["Streamlit Multi-Page Interactive Dashboard"]
         SERVICES -.-> STREAMLIT
         LANGGRAPH --> STREAMLIT
-        STREAMLIT --> UI_PAGES[Executive Overview | University Benchmarking | Country Intelligence\nHistorical Trends | Criteria Trade-offs | Demographics | AI Copilot]
+        STREAMLIT --> UI_PAGES["Executive Overview • University Benchmarking • Country Intelligence<br/>Historical Trends • Criteria Trade-offs • Demographics • AI Copilot"]
     end
 ```
 
