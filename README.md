@@ -156,8 +156,8 @@ The platform integrates deep telemetry via LangSmith tracing (`@traceable`) with
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-username/university-ranking-analytics.git
-cd university-ranking-analytics
+git clone https://github.com/pandukatti2000/University_Ranking_Analytics.git
+cd University_Ranking_Analytics
 
 # Create and activate virtual environment
 python -m venv .venv
